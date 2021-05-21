@@ -1,0 +1,101 @@
+<script>
+ function validar(){
+	if(!(/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+)+[\s]*([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*?$/.test(document.getElementById("nombre").value)))
+	{
+			alert('Hay un error en el nombre');
+			document.getElementById("nombre").style.backgroundColor='red';
+			document.getElementById("nombre").focus();
+			return false;
+	}else{
+		if(!(/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+)+[\s]*([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*?$/.test(document.getElementById("apellido").value)))
+		{
+				alert('Hay un error en el apellido');
+				document.getElementById("apellido").style.backgroundColor='red';
+				document.getElementById("apellido").focus();
+				return false;
+		}else{
+			if(!(/^[0-9]{1,2}$/.test(document.getElementById("edad").value)) || !(document.getElementById("edad").value>=18 && document.getElementById("edad").value<=60))
+			{
+					alert('La edad debe ser entre 18 y 60');
+					document.getElementById("edad").style.backgroundColor='red';
+					document.getElementById("edad").focus();
+					return false;
+			}else{
+				if(!(/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(document.getElementById("fecha").value)) )
+				{
+						alert('La fecha deve ser en formato dd/mm/aaaa');
+						document.getElementById("fecha").style.backgroundColor='red';
+						document.getElementById("fecha").focus();
+						return false;
+				}else{
+				
+					if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(document.getElementById("correo").value)) )
+					{
+							alert('El correo deve ser en formato cuenta@dominio.abc');
+							document.getElementById("correo").style.backgroundColor='red';
+							document.getElementById("correo").focus();
+							return false;
+					}
+					else{
+						if(!(/^[0-9]{10}$/.test(document.getElementById("telefono").value)) )
+						{
+								alert('El telefono deve tener 10 digitos');
+								document.getElementById("telefono").style.backgroundColor='red';
+								document.getElementById("telefono").focus();
+								return false;
+						}else{
+							if(!(/^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+)+[\s]*([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])*?$/.test(document.getElementById("obs").value)) )
+							{
+									alert('Las observaciones no deben tener caracteres especiales');
+									document.getElementById("obs").style.backgroundColor='red';
+									document.getElementById("obs").focus();
+									return false;
+							}
+							document.getElementById("nombre").style.backgroundColor='';
+							document.getElementById("apellido").style.backgroundColor='';
+							document.getElementById("edad").style.backgroundColor='';
+							document.getElementById("correo").style.backgroundColor='';
+							document.getElementById("telefono").style.backgroundColor='';
+							document.getElementById("obs").style.backgroundColor='';
+							document.getElementById("fecha").style.backgroundColor='';
+						}
+					}
+				}
+			}
+		}		
+	}
+ }
+</script>
+
+<form action="/contacto/enviar" method="post">
+		<div class="generic-form">
+			<div class="element_form">
+			<label class="label_title"> Nombre:</label><input type="text" name="nombre" id="nombre"
+			placeholder="Nombre" placeholder="Nombre"
+			autofocus
+			></div>
+			<div class="element_form">
+			<label class="label_title"> Apellidos:</label> <input type="text" name="apellido" id=
+			"nombre" placeholder="Apellidos"
+			placeholder="Apellidos"
+			></div>
+			<div class="element_form">
+			<label class="label_title"> Edad:</label> <input type="number" id="edad" value=18 min="18"
+			max="50"></div>
+			<div class="element_form">
+			<label class="label_title"> F. de Nacimiento:</label> <input type="date" name="fecha" id="fecha"></div>
+			<div class="element_form">
+			<label class="label_title"> Email:</label> <input type="email" name="correo" id="correo"  
+			autocomplete="off" placeholder="cuentaj@dominio.com"></div>
+			<div class="element_form">
+			<label class="label_title"> Telefono:</label> <input type="tel" name="telefono" id="telefono"  
+			autocomplete="off" placeholder="9531025477"></div>
+			<div class="element_form">
+			<label class="label_title"> Observaciones:</label> <textarea id="obs" rows="1"
+			cols="15" placeholder="Observaciones"></textarea></div>
+			<div class="element_form_submit"> 
+			<input type="button" name="submit" onclick="validar()" value="Enviar" class="submit" />
+			</div>
+		</div>
+	</form>
+				
